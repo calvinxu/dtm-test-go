@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dtm-test-go
+  labels:
+    app: dtm-test-go
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: dtm-test-go
+  template:
+    metadata:
+      labels:
+        app: dtm-test-go
+    spec:
+      containers:
+      - name: dtm-test-go
+        image: "catfishcook/dtm-test-go:{{ .Chart.AppVersion }}"
+        ports:
+        - containerPort: 8080
